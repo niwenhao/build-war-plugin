@@ -55,6 +55,11 @@ check {
 }
 
 publishing {
+    repositories {
+        maven {
+            url 'file:///home/nwh/maven-repo/localdev'
+        }
+    }
     publications {
         pluginMaven(MavenPublication) {
             groupId = 'org.gradle.sample'
