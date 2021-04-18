@@ -9,6 +9,7 @@
 plugins {
     // Apply the Java Gradle plugin development plugin to add support for developing Gradle plugins
     id 'java-gradle-plugin'
+    id 'maven-publish'
 }
 
 repositories {
@@ -27,6 +28,7 @@ gradlePlugin {
     plugins {
         greeting {
             id = 'build.war.plugin.greeting'
+            version = '1.2'
             implementationClass = 'build.war.plugin.BuildWarPluginPlugin'
         }
     }
@@ -50,4 +52,14 @@ task functionalTest(type: Test) {
 check {
     // Run the functional tests as part of `check`
     dependsOn(tasks.functionalTest)
+}
+
+publishing {
+    publications {
+        pluginMaven(MavenPublication) {
+            groupId = 'org.gradle.sample'
+            artifactId = 'library'
+            version = '1.1'
+        }
+    }
 }
